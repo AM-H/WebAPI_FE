@@ -42,6 +42,7 @@ import { StringColorProps } from 'types/password';
 export default function AuthRegister({ providers, csrfToken }: any) {
   const [level, setLevel] = useState<StringColorProps>();
   const [showPassword, setShowPassword] = useState(false);
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{12,}$/;
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -66,18 +67,25 @@ export default function AuthRegister({ providers, csrfToken }: any) {
           firstname: '',
           lastname: '',
           email: '',
-          company: '',
           password: '',
+          username: '',
+          role: '',
+          phone: '',
+          company: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
           firstname: Yup.string().max(255).required('First Name is required'),
           lastname: Yup.string().max(255).required('Last Name is required'),
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+          username: Yup.string().required('Username is required'),
+          role: Yup.number().min(1).max(5).required('Role is required'),
+          phone: Yup.string()
+            .matches(/^\d{10,15}$/, 'Phone number must be 10 to 15 digits')
+            .required('Phone number is required'),
           password: Yup.string()
+            .matches(passwordRegex, 'Password must be at least 12 characters and include uppercase, lowercase, digit, and special character')
             .required('Password is required')
-            .test('no-leading-trailing-whitespace', 'Password cannot start or end with spaces', (value) => value === value.trim())
-            .max(10, 'Password must be less than 10 characters')
         })}
         onSubmit={async (values, { setErrors, setSubmitting }) => {
           const trimmedEmail = values.email.trim();
@@ -146,6 +154,26 @@ export default function AuthRegister({ providers, csrfToken }: any) {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
+                  <InputLabel htmlFor="username-signup">Username*</InputLabel>
+                  <OutlinedInput
+                    fullWidth
+                    error={Boolean(touched.username && errors.username)}
+                    id="username-signup"
+                    value={values.username}
+                    name="username"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    placeholder="Enter your username"
+                  />
+                </Stack>
+                {touched.username && errors.username && (
+                  <FormHelperText error id="helper-text-username-signup">
+                    {errors.username}
+                  </FormHelperText>
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <Stack spacing={1}>
                   <InputLabel htmlFor="company-signup">Company</InputLabel>
                   <OutlinedInput
                     fullWidth
@@ -162,6 +190,47 @@ export default function AuthRegister({ providers, csrfToken }: any) {
                 {touched.company && errors.company && (
                   <FormHelperText error id="helper-text-company-signup">
                     {errors.company}
+                  </FormHelperText>
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <Stack spacing={1}>
+                  <InputLabel htmlFor="role-signup">Role (1–5)*</InputLabel>
+                  <OutlinedInput
+                    fullWidth
+                    error={Boolean(touched.role && errors.role)}
+                    id="role-signup"
+                    type="number"
+                    value={values.role}
+                    name="role"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    placeholder="Enter a role number between 1 and 5"
+                  />
+                </Stack>
+                {touched.role && errors.role && (
+                  <FormHelperText error id="helper-text-role-signup">
+                    {errors.role}
+                  </FormHelperText>
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <Stack spacing={1}>
+                  <InputLabel htmlFor="phone-signup">Phone Number*</InputLabel>
+                  <OutlinedInput
+                    fullWidth
+                    error={Boolean(touched.phone && errors.phone)}
+                    id="phone-signup"
+                    value={values.phone}
+                    name="phone"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    placeholder="Enter your phone number"
+                  />
+                </Stack>
+                {touched.phone && errors.phone && (
+                  <FormHelperText error id="helper-text-phone-signup">
+                    {errors.phone}
                   </FormHelperText>
                 )}
               </Grid>
