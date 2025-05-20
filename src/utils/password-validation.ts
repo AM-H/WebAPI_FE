@@ -18,7 +18,6 @@ function minLength(value: string): boolean {
   return value.length >= 12;
 }
 
-// New function to validate role (between 1-5)
 function isValidRole(value: number): boolean {
   return value >= 1 && value <= 5 && Number.isInteger(value);
 }
