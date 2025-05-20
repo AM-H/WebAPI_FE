@@ -1,22 +1,9 @@
-// next
 import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 // project import
 import axios from 'utils/axios';
-
-function getRandomInt(min: number, max: number) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function getRandomPhoneNumber() {
-  const areaCode = getRandomInt(100, 999);
-  const centralOfficeCode = getRandomInt(100, 999);
-  const lineNumber = getRandomInt(1000, 9999);
-  return `${areaCode}-${centralOfficeCode}-${lineNumber}`;
-}
+import { isNumber, isLowercaseChar, isUppercaseChar, isSpecialChar, minLength, isValidRole } from './password-validation';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -51,20 +38,74 @@ export const authOptions: NextAuthOptions = {
         firstname: { name: 'firstname', label: 'First Name', type: 'text', placeholder: 'Enter First Name' },
         lastname: { name: 'lastname', label: 'Last Name', type: 'text', placeholder: 'Enter Last Name' },
         email: { name: 'email', label: 'Email', type: 'email', placeholder: 'Enter Email' },
-        company: { name: 'company', label: 'Company', type: 'text', placeholder: 'Enter Company' },
-        password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Password' }
+        password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Password' },
+        username: { name: 'username', label: 'Username', type: 'text', placeholder: 'Enter Username' },
+        role: { name: 'role', label: 'Role', type: 'number', placeholder: 'Enter Role (1-5)' },
+        phone: { name: 'phone', label: 'Phone', type: 'tel', placeholder: 'Enter Phone Number' }
       },
       async authorize(credentials) {
         try {
+          // Check for required fields
+          if (
+            !credentials?.firstname ||
+            !credentials?.lastname ||
+            !credentials?.email ||
+            !credentials?.password ||
+            !credentials?.username ||
+            !credentials?.phone
+          ) {
+            throw new Error('Missing required information');
+          }
+
+          // Validate password
+          const passwordErrors: string[] = [];
+          if (!minLength(credentials.password)) {
+            passwordErrors.push('Password must be at least 12 characters long');
+          }
+          if (!isUppercaseChar(credentials.password)) {
+            passwordErrors.push('Password must contain at least 1 uppercase letter');
+          }
+          if (!isLowercaseChar(credentials.password)) {
+            passwordErrors.push('Password must contain at least 1 lowercase letter');
+          }
+          if (!isNumber(credentials.password)) {
+            passwordErrors.push('Password must contain at least 1 digit');
+          }
+          if (!isSpecialChar(credentials.password)) {
+            passwordErrors.push("Password must contain at least 1 special character (!@#$%^&*(),.?':{}|<>)");
+          }
+
+          if (passwordErrors.length > 0) {
+            throw new Error(`Invalid password: ${passwordErrors.join(', ')}`);
+          }
+
+          // Validate email
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(credentials.email)) {
+            throw new Error('Invalid email');
+          }
+
+          // Validate phone (10-15 digits)
+          const digitsOnly = credentials.phone.replace(/\D/g, '');
+          if (digitsOnly.length < 10 || digitsOnly.length > 15) {
+            throw new Error('Invalid phone number: Must be between 10 and 15 digits');
+          }
+
+          // Validate role (must be 1-5)
+          const role = Number(credentials.role || 1);
+          if (!isValidRole(role)) {
+            throw new Error('Invalid or missing role: Role must be a number between 1-5');
+          }
+
+          // Make API call with validated data
           const user = await axios.post('/register', {
-            firstname: credentials?.firstname,
-            lastname: credentials?.lastname,
-            company: credentials?.company,
-            password: credentials?.password,
-            email: credentials?.email,
-            role: 1,
-            username: credentials?.email,
-            phone: getRandomPhoneNumber() // TODO request phone number from user
+            firstname: credentials.firstname,
+            lastname: credentials.lastname,
+            email: credentials.email,
+            password: credentials.password,
+            username: credentials.username,
+            role: role,
+            phone: credentials.phone
           });
 
           if (user) {
