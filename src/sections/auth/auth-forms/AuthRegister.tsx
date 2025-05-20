@@ -94,6 +94,9 @@ export default function AuthRegister({ providers, csrfToken }: any) {
             firstname: values.firstname,
             lastname: values.lastname,
             email: trimmedEmail,
+            username: values.username,
+            role: values.role,
+            phone: values.phone,
             password: values.password,
             company: values.company,
             callbackUrl: APP_DEFAULT_PATH
