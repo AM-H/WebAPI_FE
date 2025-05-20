@@ -72,7 +72,7 @@ export const authOptions: NextAuthOptions = {
             passwordErrors.push('Password must contain at least 1 digit');
           }
           if (!isSpecialChar(credentials.password)) {
-            passwordErrors.push("Password must contain at least 1 special character (!@#$%^&*(),.?':{}|<>)");
+            passwordErrors.push('Password must contain at least 1 special character');
           }
 
           if (passwordErrors.length > 0) {
