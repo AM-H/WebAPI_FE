@@ -5,20 +5,20 @@ https://group6-tcss460-front-end.vercel.app/
 https://group3-tcss460-web-api-c867cd962f17.herokuapp.com/
 
 
-# Alpha Sprint Contribution
+# Beta Sprint Contribution
 
-Elias Emanuel Arriola - Assisted in completing the tutorial   
-Ahmed Hassan - Hosted the web app on vercel and deployed the app.  
-David William Besex - Assisted in completing the tutorial     
-Ali Mohamed - Assisted in completing the tutorial   
+Elias Emanuel Arriola - Update the register/login form to match the 3rd-party Auth API registration/login requirements and included a page/view to allow the user to view a list of books  
+Ahmed Hassan - Update the register/login form to match the 3rd-party Auth API registration/login requirements and included a page/view to allow the user to view a list of books   
+David William Besex -      
+Ali Mohamed -   
 
-# Alpha Sprint Meetings
+# Beta Sprint Meetings
 
-### Meeting 1 (May 12, 2025)
+### Meeting 1 (May 19, 2025)
 
-Check off for running front-end.
+Splitting up the work for the beta sprint.
 
-### Meeting 2 (May 17, 2025)
+### Meeting 2 (May , 2025)
 
 Published Front End version Alpha
 
@@ -26,6 +26,6 @@ Published Front End version Alpha
 
 Primary form of communication was through discord call on group server
 
-# Alpha Sprint Comments
+# Beta Sprint Comments
 
-Elias experience issues when registering for vercel
+Elias experience issues with oneDrive sychonratiozon was effect the ports
