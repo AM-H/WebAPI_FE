@@ -1,3 +1,5 @@
+import {IRatings} from '../types/ratings'
+
 export interface Book {
   id: number;
   title: string;
@@ -5,4 +7,5 @@ export interface Book {
   year: number;
   image: string;
   description: string;
+  ratings: IRatings;
 }
