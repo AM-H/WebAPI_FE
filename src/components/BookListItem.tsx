@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function BookListItem({ book }: { book: Book }) {
   return (
-    <Link href={`/dashboard/books/${book.id}`} passHref legacyBehavior>
+    <Link href={`/books/${book.id}`} passHref legacyBehavior>
       <ListItem button component="a">
         <ListItemAvatar>
           <Avatar
