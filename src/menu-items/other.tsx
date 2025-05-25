@@ -6,6 +6,7 @@ import QuestionOutlined from '@ant-design/icons/QuestionOutlined';
 import StopOutlined from '@ant-design/icons/StopOutlined';
 import PhoneOutlined from '@ant-design/icons/PhoneOutlined';
 import FullscreenOutlined from '@ant-design/icons/FullscreenOutlined';
+import ResetPassOutlined from '@ant-design/icons/ReloadOutlined';
 
 // type
 import { NavItemType } from 'types/menu';
@@ -15,7 +16,8 @@ const icons = {
   QuestionOutlined,
   StopOutlined,
   PhoneOutlined,
-  FullscreenOutlined
+  FullscreenOutlined,
+  ResetPassOutlined
 };
 
 // ==============================|| MENU ITEMS - SUPPORT ||============================== //
@@ -32,6 +34,13 @@ const other: NavItemType = {
       url: '#',
       icon: icons.StopOutlined,
       disabled: true
+    },
+    {
+      id: 'change-password',
+      title: 'Change Password',
+      type: 'item',
+      url: '/reset-pass',
+      icon: icons.ResetPassOutlined
     },
     {
       id: 'full-page',
