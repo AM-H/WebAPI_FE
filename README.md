@@ -28,4 +28,4 @@ Primary form of communication was through discord call on group server
 
 # Beta Sprint Comments
 
-Elias experience issues with oneDrive sychonratiozon was effect the ports
+Elias experience issues with oneDrive synchronization was effect the ports
