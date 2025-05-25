@@ -10,7 +10,7 @@ https://group3-tcss460-web-api-c867cd962f17.herokuapp.com/
 Elias Emanuel Arriola - Update the register/login form to match the 3rd-party Auth API registration/login requirements and included a page/view to allow the user to view a list of books  
 Ahmed Hassan - Update the register/login form to match the 3rd-party Auth API registration/login requirements and included a page/view to allow the user to view a list of books   
 David William Besex -      
-Ali Mohamed -   
+Ali Mohamed -   Included a page/view that allows users to view all information of a single book and allows users to update the star rating of the book.
 
 # Beta Sprint Meetings
 
