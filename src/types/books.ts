@@ -1,25 +1,16 @@
-export interface IRatings {
-  average: number;
-  count: number;
-  rating_1: number;
-  rating_2: number;
-  rating_3: number;
-  rating_4: number;
-  rating_5: number;
-}
-
-export interface IUrlIcon {
-  large: string;
-  small: string;
-}
-
 export interface IBook {
-  isbn13: number;
-  authors: string;
-  publication: number;
+  isbn13: string;
+  authors: string[]; // array of names
+  original_publication_year: number;
   original_title: string;
   title: string;
-  ratings: IRatings;
-  icons: IUrlIcon;
+  average_rating: number;
+  ratings_count: number;
+  ratings_1: number;
+  ratings_2: number;
+  ratings_3: number;
+  ratings_4: number;
+  ratings_5: number;
+  image_url: string;
+  small_image_url: string;
 }
-

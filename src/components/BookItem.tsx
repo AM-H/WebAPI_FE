@@ -1,14 +1,10 @@
 import { Avatar, Typography, Card, CardContent, Box, Divider } from '@mui/material';
 import BookRating from 'components/BookRating';
-import { mockBooks } from 'utils/mockBooks';
 import { IBook } from 'types/books';
 
-export default function BookItem({ isbn13 }: { isbn13: number }) {
-  const book: IBook | undefined = mockBooks.find((b) => b.isbn13 === isbn13);
-
-  if (!book) {
-    return <Typography color="error">Book not found</Typography>;
-  }
+export default function BookItem({ book }: { book: IBook }) {
+  const authors = Array.isArray(book.authors) ? book.authors.join(', ') : book.authors;
+  const cover = book.image_url;
 
   return (
     <Card sx={{ p: 4, maxWidth: 700, mx: 'auto', mt: 4 }}>
@@ -22,17 +18,17 @@ export default function BookItem({ isbn13 }: { isbn13: number }) {
           </Typography>
         )}
         <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-          By {book.authors}
+          By {authors}
         </Typography>
         <Typography variant="body2" gutterBottom>
-          Published: {book.publication}
+          Published: {book.original_publication_year}
         </Typography>
         <Typography variant="body2" gutterBottom>
           ISBN-13: {book.isbn13}
         </Typography>
         <Avatar
           alt={book.title}
-          src={book.icons.large}
+          src={cover}
           variant="square"
           sx={{ width: 250, height: 375, my: 2 }}
         />
@@ -40,7 +36,7 @@ export default function BookItem({ isbn13 }: { isbn13: number }) {
 
       <CardContent>
         <Divider sx={{ mb: 2 }} />
-        <BookRating rating={book.ratings} />
+        <BookRating average={parseFloat(book.average_rating as any)} />
         <Typography variant="subtitle1" sx={{ mt: 3 }}>
           Leave a rating
         </Typography>

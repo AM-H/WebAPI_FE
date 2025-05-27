@@ -2,12 +2,9 @@ import * as React from 'react';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
-import { IRatings } from '../types/books'
 
-
-
-export default function BookRating({rating} :{rating : IRatings}) {
-  const [value, setValue] = React.useState<number | null>(rating.average);
+export default function BookRating({ average }: { average: number }) {
+  const [value, setValue] = React.useState<number | null>(average);
   const [hover, setHover] = React.useState(-1);
 
   return (
@@ -26,9 +23,7 @@ export default function BookRating({rating} :{rating : IRatings}) {
       />
       {value !== null && (
         <Box sx={{ ml: 2 }}>{hover !== -1 ? hover : value.toFixed(1)}</Box>
-        )}
+      )}
     </Box>
   );
 }
-
-        
