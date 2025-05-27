@@ -1,76 +1,84 @@
-import { Book } from '../types/books';
+import { IBook } from '../types/books';
 
-export const mockBooks: Book[] = [
+export const mockBooks: IBook[] = [
   {
-    id: 1,
+    isbn13: 9780743273565,
     title: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    year: 1925,
-    image: '/assets/images/gatsby.jpg',
-    description: 'A novel set in the Roaring Twenties that explores wealth, love, and the American Dream.',
-    ratings:
-        {
-          average: 4.6,
-          count: 5,
-          rating_1: 5.0,
-          rating_2: 3.5,
-          rating_3: 5.0,
-          rating_4: 4.5,
-          rating_5: 5.0
-        }
+    original_title: 'The Great Gatsby',
+    authors: 'F. Scott Fitzgerald',
+    publication: 1925,
+    ratings: {
+      average: 4.6,
+      count: 5,
+      rating_1: 5.0,
+      rating_2: 3.5,
+      rating_3: 5.0,
+      rating_4: 4.5,
+      rating_5: 5.0,
+    },
+    icons: {
+      large: '/assets/images/gatsby.jpg',
+      small: '/assets/images/gatsby.jpg',
+    },
   },
   {
-    id: 2,
+    isbn13: 9780061120084,
     title: 'To Kill a Mockingbird',
-    author: 'Harper Lee',
-    year: 1960,
-    image: '/assets/images/mockingbird.jpg',
-    description: 'A story of racial injustice in the Deep South, seen through the eyes of a young girl.',
-    ratings:
-      {
-        average: 4.7,
-        count: 5,
-        rating_1: 4.7,
-        rating_2: 5.0,
-        rating_3: 4.8,
-        rating_4: 4.4,
-        rating_5: 5.0
-      }
+    original_title: 'To Kill a Mockingbird',
+    authors: 'Harper Lee',
+    publication: 1960,
+    ratings: {
+      average: 4.7,
+      count: 5,
+      rating_1: 4.7,
+      rating_2: 5.0,
+      rating_3: 4.8,
+      rating_4: 4.4,
+      rating_5: 5.0,
+    },
+    icons: {
+      large: '/assets/images/mockingbird.jpg',
+      small: '/assets/images/mockingbird.jpg',
+    },
   },
   {
-    id: 3,
+    isbn13: 9780451524935,
     title: '1984',
-    author: 'George Orwell',
-    year: 1949,
-    image: '/assets/images/1984.jpg',
-    description: 'A dystopian novel warning against totalitarianism and mass surveillance.',
-    ratings:
-    {
+    original_title: 'Nineteen Eighty-Four',
+    authors: 'George Orwell',
+    publication: 1949,
+    ratings: {
       average: 4.7,
       count: 5,
       rating_1: 4.7,
       rating_2: 5.0,
       rating_3: 4.8,
       rating_4: 4.4,
-      rating_5: 5.0
-    }
-},
+      rating_5: 5.0,
+    },
+    icons: {
+      large: '/assets/images/1984.jpg',
+      small: '/assets/images/1984.jpg',
+    },
+  },
   {
-    id: 4,
+    isbn13: 9780141439518,
     title: 'Pride and Prejudice',
-    author: 'Jane Austen',
-    year: 1813,
-    image: '/assets/images/pride.jpg',
-    description: 'A romantic novel that also critiques the British class system of the early 19th century.',
-    ratings:
-    {
+    original_title: 'Pride and Prejudice',
+    authors: 'Jane Austen',
+    publication: 1813,
+    ratings: {
       average: 4.7,
       count: 5,
       rating_1: 4.7,
       rating_2: 5.0,
       rating_3: 4.8,
       rating_4: 4.4,
-      rating_5: 5.0
-    }  
-  }
+      rating_5: 5.0,
+    },
+    icons: {
+      large: '/assets/images/pride.jpg',
+      small: '/assets/images/pride.jpg',
+    },
+  },
 ];

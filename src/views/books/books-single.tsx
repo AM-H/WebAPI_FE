@@ -8,18 +8,21 @@ import { notFound } from 'next/navigation';
 
 export default function SingleBookPage() {
   const params = useParams();
-  const id = params?.id; 
+  const isbnParam = params?.id;
 
-  const book = mockBooks.find((b) => String(b.id) === id);
+  // Ensure the param is a number, since isbn13 is a number
+  const isbn13 = isbnParam ? parseInt(isbnParam as string, 10) : NaN;
+
+  const book = mockBooks.find((b) => b.isbn13 === isbn13);
 
   if (!book) {
     notFound();
-    return null; 
+    return null;
   }
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
-      <BookItem id = {book.id} />
+      <BookItem isbn13={book.isbn13} />
     </Container>
   );
 }

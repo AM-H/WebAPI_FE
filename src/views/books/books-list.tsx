@@ -32,7 +32,7 @@ export default function BookListView() {
           <Box sx={{ mt: 1 }}>
             <List>
               {mockBooks.map((book) => (
-                <BookListItem key={book.id} book={book} />
+                <BookListItem key={book.isbn13} book={book} />
               ))}
             </List>
           </Box>
