@@ -24,6 +24,7 @@ export default function BookListView() {
   const [title, setTitle] = React.useState('');
   const [minRating, setMinRating] = React.useState('');
   const [isbn13, setIsbn13] = React.useState('');
+  const [author, setAuthor] = React.useState('');
   const [books, setBooks] = React.useState<IBook[]>([]);
   const [error, setError] = React.useState('');
 
@@ -39,7 +40,6 @@ export default function BookListView() {
     try {
       const encodedTitle = encodeURIComponent(title.trim());
       const res = await axiosServices.get(`c/get_book_by_title/${encodedTitle}`);
-      console.log("Title search result:", res.data.book);
       setBooks([res.data.book]);
     } catch (err) {
       console.error(err);
@@ -59,7 +59,6 @@ export default function BookListView() {
 
     try {
       const res = await axiosServices.get(`c/get_books_by_rating/${ratingValue}`);
-      console.log("Rating search result:", res.data.data);
       setBooks(res.data.data || []);
     } catch (err) {
       console.error(err);
@@ -78,13 +77,34 @@ export default function BookListView() {
 
     try {
       const res = await axiosServices.get(`c/get_book_by_ISBN/${isbn13.trim()}`);
-      console.log("ISBN search result:", res.data.book);
       setBooks([res.data.book]);
     } catch (err) {
       console.error(err);
       setError('Book not found or request failed.');
     }
   };
+
+  const handleAuthorSearch = async () => {
+    setError('');
+    setBooks([]);
+
+    if (!author.trim()) {
+      setError('Please enter an author name.');
+      return;
+    }
+
+    try {
+      const encodedAuthor = encodeURIComponent(author.trim());
+      const res = await axiosServices.get(`c/get_book_by_author/${encodedAuthor}`);
+      console.log("Author search result:", res.data.books);
+      setBooks(res.data.books || []);
+    } catch (err) {
+      console.error(err);
+      setError('Failed to fetch books by author.');
+    }
+  };
+
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -154,6 +174,24 @@ export default function BookListView() {
             />
             <Button variant="contained" onClick={handleISBNSearch} fullWidth>
               Search by ISBN
+            </Button>
+          </Box>
+
+          <Divider sx={{ my: 4, width: '100%' }} />
+
+          {/* Author Search */}
+          <Box sx={{ width: '100%' }}>
+            <Typography variant="h6">Search by Author</Typography>
+            <TextField
+              label="Author Name"
+              fullWidth
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+              sx={{ mb: 2 }}
+              placeholder="e.g. J.K. Rowling"
+            />
+            <Button variant="contained" onClick={handleAuthorSearch} fullWidth>
+              Search by Author
             </Button>
           </Box>
 

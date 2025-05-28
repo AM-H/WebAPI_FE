@@ -25,9 +25,16 @@ const booksMenu: NavItemType = {
       children: [
         {
           id: 'book-list',
-          title: <FormattedMessage id="View-Books" />,
+          title: <FormattedMessage id="Search Books" />,
           type: 'item',
           url: '/books/list',
+          icon: icons.BookIcon
+        },
+        {
+          id: 'book-filter',
+          title: <FormattedMessage id="Filter & Paginate Books" />,
+          type: 'item',
+          url: '/books/filter-paginate',
           icon: icons.BookIcon
         }
       ]
