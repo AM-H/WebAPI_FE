@@ -3,8 +3,10 @@ import BookRating from 'components/BookRating';
 import { IBook } from 'types/books';
 
 export default function BookItem({ book }: { book: IBook }) {
+  // const authors = Array.isArray(book.authors) ? book.authors.join(', ') : book.authors;
+  // const cover = book.image_url;
   const authors = Array.isArray(book.authors) ? book.authors.join(', ') : book.authors;
-  const cover = book.image_url;
+  const cover = book.image_url || book.icons.large; //first, for min_avg_rating || for get book by title
 
   return (
     <Card sx={{ p: 4, maxWidth: 700, mx: 'auto', mt: 4 }}>
@@ -36,7 +38,7 @@ export default function BookItem({ book }: { book: IBook }) {
 
       <CardContent>
         <Divider sx={{ mb: 2 }} />
-        <BookRating average={parseFloat(book.average_rating as any)} />
+        <BookRating average={parseFloat(book.ratings.average as any)} />
         <Typography variant="subtitle1" sx={{ mt: 3 }}>
           Leave a rating
         </Typography>
