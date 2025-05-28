@@ -36,6 +36,13 @@ const booksMenu: NavItemType = {
           type: 'item',
           url: '/books/filter-paginate',
           icon: icons.BookIcon
+        },
+        {
+          id: 'book-create',
+          title: <FormattedMessage id="Create New Book" />,
+          type: 'item',
+          url: '/books/create-book',
+          icon: icons.BookIcon
         }
       ]
     }
