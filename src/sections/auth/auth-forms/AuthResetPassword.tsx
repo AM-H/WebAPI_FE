@@ -110,7 +110,7 @@ export default function AuthResetPassword() {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="password-reset">Password</InputLabel>
+                <InputLabel htmlFor="password-reset">Old Password</InputLabel>
                 <OutlinedInput
                   fullWidth
                   error={Boolean(touched.password && errors.password)}
@@ -159,7 +159,7 @@ export default function AuthResetPassword() {
             </Grid>
             <Grid item xs={12}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="confirm-password-reset">Confirm Password</InputLabel>
+                <InputLabel htmlFor="confirm-password-reset">New Password</InputLabel>
                 <OutlinedInput
                   fullWidth
                   error={Boolean(touched.confirmPassword && errors.confirmPassword)}
@@ -187,7 +187,7 @@ export default function AuthResetPassword() {
             <Grid item xs={12}>
               <AnimateButton>
                 <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
-                  Reset Password
+                  Update
                 </Button>
               </AnimateButton>
             </Grid>
