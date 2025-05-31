@@ -17,12 +17,12 @@ export default function BookRating({ onSubmit }: { onSubmit?: (ratings: RatingDa
     rating_2: 0,
     rating_3: 0,
     rating_4: 0,
-    rating_5: 0,
+    rating_5: 0
   });
 
   const handleChange = (key: keyof RatingData, value: string) => {
     if (value === '' || /^\d+$/.test(value)) {
-      setRatings(prev => ({ ...prev, [key]: value === '' ? '' : Math.max(0, parseInt(value)) }));
+      setRatings((prev) => ({ ...prev, [key]: value === '' ? '' : Math.max(0, parseInt(value)) }));
     }
   };
 
@@ -42,7 +42,7 @@ export default function BookRating({ onSubmit }: { onSubmit?: (ratings: RatingDa
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>Update Rating</DialogTitle>
         <DialogContent>
-          {[1, 2, 3, 4, 5].map(n => {
+          {[1, 2, 3, 4, 5].map((n) => {
             const key = `rating_${n}` as keyof RatingData;
             return (
               <Box key={key} sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
@@ -58,8 +58,12 @@ export default function BookRating({ onSubmit }: { onSubmit?: (ratings: RatingDa
             );
           })}
           <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-            <Button variant="outlined" onClick={() => setOpen(false)}>Cancel</Button>
-            <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+            <Button variant="outlined" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="contained" onClick={handleSubmit}>
+              Submit
+            </Button>
           </Box>
         </DialogContent>
       </Dialog>

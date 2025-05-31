@@ -1,13 +1,5 @@
 'use client';
-import {
-  Dialog,
-  Button,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  DialogActions,
-  IconButton,
-} from '@mui/material';
+import { Dialog, Button, DialogContent, DialogContentText, DialogTitle, DialogActions, IconButton } from '@mui/material';
 import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -18,10 +10,8 @@ export default function DeleteButton({ onDelete }: { onDelete: () => void }) {
   const handleOpen = () => setOpen(true);
 
   const handleDeleteClick = () => {
-    console.log("Delete button clicked, onDelete is:", typeof onDelete, onDelete);
     handleClose();
     onDelete();
-   
   };
 
   return (
@@ -44,4 +34,3 @@ export default function DeleteButton({ onDelete }: { onDelete: () => void }) {
     </>
   );
 }
-

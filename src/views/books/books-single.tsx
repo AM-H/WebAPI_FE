@@ -10,29 +10,30 @@ import axios from 'utils/axios';
 export default function BookSinglePage() {
   const { id: isbn13 } = useParams() as { id: string };
   const [book, setBook] = useState<IBook | null>(null);
-  const[updated, setUpdated] = useState(false);
+  const [updated, setUpdated] = useState(false);
   const [error, setError] = useState('');
   const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
-    axios.get(`c/get_book_by_ISBN/${isbn13}`)
+    axios
+      .get(`c/get_book_by_ISBN/${isbn13}`)
       .then((res) => setBook(res.data.book))
       .catch(() => setError('Failed to load book'));
   }, [isbn13]);
 
   const handleUpdateRatings = (ratingData: any) => {
     if (!book) return;
-  
+
     const formattedData = {
       ratings_1: ratingData.rating_1,
       ratings_2: ratingData.rating_2,
       ratings_3: ratingData.rating_3,
       ratings_4: ratingData.rating_4,
-      ratings_5: ratingData.rating_5,
+      ratings_5: ratingData.rating_5
     };
     console.log('Sending rating data:', formattedData);
-    axios.put(`/c/update_book_ratings/${book.isbn13}`, formattedData, {
-    })
+    axios
+      .put(`/c/update_book_ratings/${book.isbn13}`, formattedData, {})
       .then(() => axios.get(`/c/get_book_by_ISBN/${book.isbn13}`))
       .then((res) => {
         setBook(res.data.book);
@@ -42,11 +43,11 @@ export default function BookSinglePage() {
         setError('Failed to update book ratings');
       });
   };
-  
 
   const handleDelete = () => {
     if (!book) return;
-    axios.delete(`c/delete_book_by_ISBN/${book.isbn13}`)
+    axios
+      .delete(`c/delete_book_by_ISBN/${book.isbn13}`)
       .then((res) => {
         if (res.status === 204) setDeleted(true);
       })
@@ -59,12 +60,15 @@ export default function BookSinglePage() {
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
       {deleted && (
-        <Alert severity="success" action={
-          <a href="/books/list" style={{ color: 'inherit', textDecoration: 'underline' }}>
-            Close & Return
-          </a>
-        }>
-          Book deleted. Click to return to book list.
+        <Alert
+          severity="success"
+          action={
+            <a href="/books/list" style={{ color: 'inherit', textDecoration: 'underline' }}>
+              Close & Return
+            </a>
+          }
+        >
+          Book deleted. Click to return to search page.
         </Alert>
       )}
       {updated && (
@@ -76,4 +80,3 @@ export default function BookSinglePage() {
     </Container>
   );
 }
-  

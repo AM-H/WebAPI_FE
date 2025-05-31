@@ -1,4 +1,4 @@
-import {IRatings} from '../types/ratings'
+import { IRatings } from '../types/ratings';
 
 export interface IBook {
   isbn13: string;
@@ -8,12 +8,11 @@ export interface IBook {
   publication: number;
   original_title: string;
   title: string;
-  ratings : IRatings,
+  ratings: IRatings;
   image_url: string;
   icons: {
     large: string;
     small: string;
-  }
+  };
   small_image_url: string;
 }
-

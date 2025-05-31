@@ -12,10 +12,9 @@ export default function BookItem({
   onDelete?: () => void;
   onSubmit?: (ratingData: any) => void;
 }) {
-
   const authors = Array.isArray(book.authors) ? book.authors.join(', ') : book.authors;
   const cover = book.image_url || book.icons.large;
-  
+
   return (
     <Card sx={{ p: 4, maxWidth: 700, mx: 'auto', mt: 4 }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
@@ -34,11 +33,13 @@ export default function BookItem({
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Rating value={book.ratings.average} readOnly precision={0.5} />
-            <Typography sx={{ ml: 1 }}>{parseFloat(book.ratings.average as any).toFixed(1)}</Typography>
+            <Typography sx={{ ml: 1 }}>
+              {typeof book.ratings.average === 'number' && !isNaN(book.ratings.average) ? book.ratings.average.toFixed(1) : '0.0'}
+            </Typography>
           </Box>
           {onDelete && <DeleteButton onDelete={onDelete} />}
         </Box>
-        <BookRating onSubmit = {onSubmit}/>
+        <BookRating onSubmit={onSubmit} />
       </CardContent>
     </Card>
   );
