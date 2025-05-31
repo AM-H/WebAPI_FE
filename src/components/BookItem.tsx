@@ -25,7 +25,7 @@ export default function BookItem({
           </Typography>
         )}
         <Typography variant="subtitle1">By {authors}</Typography>
-        <Typography variant="body2">Published: {book.original_publication_year}</Typography>
+        <Typography variant="body2">Published: {book.publication}</Typography>
         <Typography variant="body2">ISBN-13: {book.isbn13}</Typography>
         <Avatar alt={book.title} src={cover} variant="square" sx={{ width: 250, height: 375, my: 2 }} />
       </Box>
