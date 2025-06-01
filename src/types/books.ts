@@ -13,13 +13,13 @@ export interface IBook {
   ratings_3: number;
   ratings_4: number;
   ratings_5: number;
-  ratings : {
+  ratings: {
     average: number;
-  }
+  };
   image_url: string;
   icons: {
     large: string;
     small: string;
-  }
+  };
   small_image_url: string;
 }

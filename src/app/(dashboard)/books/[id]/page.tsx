@@ -8,7 +8,7 @@ import axiosServices from 'utils/axios';
 import { CircularProgress, Box } from '@mui/material';
 
 export default function BookItemPage() {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [book, setBook] = useState<IBook | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,7 @@ export default function BookItemPage() {
     const fetchBook = async () => {
       try {
         const res = await axiosServices.get(`c/get_book_by_ISBN/${id}`);
-        console.log(res.data.book)
+        console.log(res.data.book);
         setBook(res.data.book);
       } catch (err) {
         console.error('Book fetch error:', err);

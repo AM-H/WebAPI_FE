@@ -5,4 +5,3 @@ import ResetPassword from 'views/auth/reset-password';
 export default function ResetPassPage() {
   return <ResetPassword />;
 }
-

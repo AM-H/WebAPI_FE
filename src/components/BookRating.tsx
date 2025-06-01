@@ -21,9 +21,7 @@ export default function BookRating({ average }: { average: number }) {
         }}
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
-      {value !== null && (
-        <Box sx={{ ml: 2 }}>{hover !== -1 ? hover : value.toFixed(1)}</Box>
-      )}
+      {value !== null && <Box sx={{ ml: 2 }}>{hover !== -1 ? hover : value.toFixed(1)}</Box>}
     </Box>
   );
 }

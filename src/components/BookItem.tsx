@@ -28,12 +28,7 @@ export default function BookItem({ book }: { book: IBook }) {
         <Typography variant="body2" gutterBottom>
           ISBN-13: {book.isbn13}
         </Typography>
-        <Avatar
-          alt={book.title}
-          src={cover}
-          variant="square"
-          sx={{ width: 250, height: 375, my: 2 }}
-        />
+        <Avatar alt={book.title} src={cover} variant="square" sx={{ width: 250, height: 375, my: 2 }} />
       </Box>
 
       <CardContent>

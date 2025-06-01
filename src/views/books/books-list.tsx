@@ -1,17 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  CssBaseline,
-  List,
-  TextField,
-  Typography,
-  Divider,
-} from '@mui/material';
+import { Avatar, Box, Button, Container, CssBaseline, List, TextField, Typography, Divider } from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import BookListItem from '../../components/BookListItem';
@@ -96,15 +86,13 @@ export default function BookListView() {
     try {
       const encodedAuthor = encodeURIComponent(author.trim());
       const res = await axiosServices.get(`c/get_book_by_author/${encodedAuthor}`);
-      console.log("Author search result:", res.data.books);
+      console.log('Author search result:', res.data.books);
       setBooks(res.data.books || []);
     } catch (err) {
       console.error(err);
       setError('Failed to fetch books by author.');
     }
   };
-
-
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -203,17 +191,13 @@ export default function BookListView() {
               </Typography>
             )}
             <List>
-              {books.length > 0 ? (
-                books.map((book) => (
-                  <BookListItem key={book.isbn13} book={book} />
-                ))
-              ) : (
-                !error && (
-                  <Typography variant="body1" sx={{ mt: 2, textAlign: 'center' }}>
-                    No books to display.
-                  </Typography>
-                )
-              )}
+              {books.length > 0
+                ? books.map((book) => <BookListItem key={book.isbn13} book={book} />)
+                : !error && (
+                    <Typography variant="body1" sx={{ mt: 2, textAlign: 'center' }}>
+                      No books to display.
+                    </Typography>
+                  )}
             </List>
           </Box>
         </Box>

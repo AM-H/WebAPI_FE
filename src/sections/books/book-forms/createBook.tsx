@@ -22,7 +22,7 @@ import axios from 'utils/axios';
 export default function CreateBook({ onSuccess, onError }: { onSuccess: () => void; onError: (msg: string) => void }) {
   return (
     <>
-      <Formik   
+      <Formik
         initialValues={{
           isbn13: '',
           authors: '',

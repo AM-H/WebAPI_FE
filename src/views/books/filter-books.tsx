@@ -12,7 +12,7 @@ import {
   TextField,
   Typography,
   ToggleButton,
-  ToggleButtonGroup,
+  ToggleButtonGroup
 } from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -104,11 +104,7 @@ export default function FilterBooksView() {
 
           <Box sx={{ width: '100%' }}>
             {(mode === 'filter'
-              ? [
-                  'author', 'title', 'minYear', 'maxYear',
-                  'minRating', 'maxRating', 'minRatingCount', 'maxRatingCount',
-                  'limit', 'offset'
-                ]
+              ? ['author', 'title', 'minYear', 'maxYear', 'minRating', 'maxRating', 'minRatingCount', 'maxRatingCount', 'limit', 'offset']
               : ['limit', 'offset']
             ).map((field) => (
               <TextField
@@ -135,17 +131,13 @@ export default function FilterBooksView() {
               </Typography>
             )}
             <List>
-              {books.length > 0 ? (
-                books.map((book) => (
-                  <BookListItem key={book.isbn13} book={book} />
-                ))
-              ) : (
-                !error && (
-                  <Typography variant="body1" sx={{ mt: 2, textAlign: 'center' }}>
-                    No books to display.
-                  </Typography>
-                )
-              )}
+              {books.length > 0
+                ? books.map((book) => <BookListItem key={book.isbn13} book={book} />)
+                : !error && (
+                    <Typography variant="body1" sx={{ mt: 2, textAlign: 'center' }}>
+                      No books to display.
+                    </Typography>
+                  )}
             </List>
           </Box>
         </Box>

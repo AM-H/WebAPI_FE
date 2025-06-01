@@ -84,7 +84,10 @@ export default function AuthRegister({ providers, csrfToken }: any) {
             .matches(/^\d{10,15}$/, 'Phone number must be 10 to 15 digits')
             .required('Phone number is required'),
           password: Yup.string()
-            .matches(passwordRegex, 'Password must be at least 12 characters and include uppercase, lowercase, digit, and special character')
+            .matches(
+              passwordRegex,
+              'Password must be at least 12 characters and include uppercase, lowercase, digit, and special character'
+            )
             .required('Password is required')
         })}
         onSubmit={async (values, { setErrors, setSubmitting }) => {
