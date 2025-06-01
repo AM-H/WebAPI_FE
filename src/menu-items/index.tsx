@@ -4,7 +4,6 @@ import other from './other';
 import pages from './messages';
 import booksMenu from './books';
 
-
 // types
 import { NavItemType } from 'types/menu';
 
