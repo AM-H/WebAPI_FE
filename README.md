@@ -10,8 +10,7 @@ https://group3-tcss460-web-api-c867cd962f17.herokuapp.com/
 Elias Emanuel Arriola - Included page(s)/view(s) for users to search for books in all of the ways provided by the 3rd-party Book API.
 Ahmed Hassan -  Included a page/view that allows the user to create a new Book entry.   
 David William Besex - Included page and form for changing password when logged in.     
-Ali Mohamed -   Included a page/view that allows users to view all information of a single book and allows users to update the star rating of the book.
-
+Ali Mohamed -   Included a page/view that allows users to view a single book, delete the book, and update the ratings for the book. Connected page to 3rd party API.
 # Beta II Sprint Meetings
 
 ### Meeting 1 (May 26, 2025)
