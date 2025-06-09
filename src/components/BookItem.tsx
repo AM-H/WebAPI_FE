@@ -15,6 +15,23 @@ export default function BookItem({
   const authors = Array.isArray(book.authors) ? book.authors.join(', ') : book.authors;
   const cover = book.image_url || book.icons.large;
 
+  const calculateAverageRating = () => {
+    const { rating_1, rating_2, rating_3, rating_4, rating_5 } = book.ratings;
+
+    const totalVotes = rating_1 + rating_2 + rating_3 + rating_4 + rating_5;
+    if (totalVotes === 0) {
+      return 0;
+    }
+
+    const weightedSum = rating_1 * 1 + rating_2 * 2 + rating_3 * 3 + rating_4 * 4 + rating_5 * 5;
+    const average = weightedSum / totalVotes;
+
+    return Number(average.toFixed(1));
+  };
+
+  const averageRating = calculateAverageRating();
+  const totalRatings = book.ratings.rating_1 + book.ratings.rating_2 + book.ratings.rating_3 + book.ratings.rating_4 + book.ratings.rating_5;
+
   return (
     <Card sx={{ p: 4, maxWidth: 700, mx: 'auto', mt: 4 }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
@@ -38,9 +55,10 @@ export default function BookItem({
       <CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Rating value={book.ratings.average} readOnly precision={0.5} />
-            <Typography sx={{ ml: 1 }}>
-              {typeof book.ratings.average === 'number' && !isNaN(book.ratings.average) ? book.ratings.average.toFixed(1) : '0.0'}
+            <Rating value={averageRating} readOnly precision={0.1} />
+            <Typography sx={{ ml: 1 }}>{averageRating.toFixed(1)}</Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
+              ({totalRatings} {totalRatings === 1 ? 'review' : 'reviews'})
             </Typography>
           </Box>
           {onDelete && <DeleteButton onDelete={onDelete} />}

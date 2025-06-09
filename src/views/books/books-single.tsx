@@ -31,21 +31,26 @@ export default function BookSinglePage() {
       ratings_4: ratingData.rating_4,
       ratings_5: ratingData.rating_5
     };
+
     console.log('Sending rating data:', formattedData);
+
     axios
       .put(`/c/update_book_ratings/${book.isbn13}`, formattedData, {})
       .then(() => axios.get(`/c/get_book_by_ISBN/${book.isbn13}`))
       .then((res) => {
         setBook(res.data.book);
         setUpdated(true);
+        setTimeout(() => setUpdated(false), 3000);
       })
       .catch((err) => {
+        console.error('Rating update error:', err);
         setError('Failed to update book ratings');
       });
   };
 
   const handleDelete = () => {
     if (!book) return;
+
     axios
       .delete(`c/delete_book_by_ISBN/${book.isbn13}`)
       .then((res) => {
