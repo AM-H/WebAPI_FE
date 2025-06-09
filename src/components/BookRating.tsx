@@ -10,7 +10,19 @@ type RatingData = {
   rating_5: number;
 };
 
-export default function BookRating({ onSubmit }: { onSubmit?: (ratings: RatingData) => void }) {
+export default function BookRating({
+  onSubmit,
+  currentRatings
+}: {
+  onSubmit?: (ratings: RatingData) => void;
+  currentRatings?: {
+    rating_1: number;
+    rating_2: number;
+    rating_3: number;
+    rating_4: number;
+    rating_5: number;
+  };
+}) {
   const [open, setOpen] = useState(false);
   const [ratings, setRatings] = useState<{ [key in keyof RatingData]: string | number }>({
     rating_1: 0,
@@ -19,6 +31,19 @@ export default function BookRating({ onSubmit }: { onSubmit?: (ratings: RatingDa
     rating_4: 0,
     rating_5: 0
   });
+
+  const handleOpen = () => {
+    if (currentRatings) {
+      setRatings({
+        rating_1: currentRatings.rating_1,
+        rating_2: currentRatings.rating_2,
+        rating_3: currentRatings.rating_3,
+        rating_4: currentRatings.rating_4,
+        rating_5: currentRatings.rating_5
+      });
+    }
+    setOpen(true);
+  };
 
   const handleChange = (key: keyof RatingData, value: string) => {
     if (value === '' || /^\d+$/.test(value)) {
@@ -38,7 +63,7 @@ export default function BookRating({ onSubmit }: { onSubmit?: (ratings: RatingDa
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Update Rating</Button>
+      <Button onClick={handleOpen}>Update Rating</Button>
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>Update Rating</DialogTitle>
         <DialogContent>

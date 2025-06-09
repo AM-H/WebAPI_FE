@@ -63,7 +63,16 @@ export default function BookItem({
           </Box>
           {onDelete && <DeleteButton onDelete={onDelete} />}
         </Box>
-        <BookRating onSubmit={onSubmit} />
+        <BookRating 
+          onSubmit={onSubmit} 
+          currentRatings={{
+            rating_1: book.ratings.rating_1,
+            rating_2: book.ratings.rating_2,
+            rating_3: book.ratings.rating_3,
+            rating_4: book.ratings.rating_4,
+            rating_5: book.ratings.rating_5
+          }}
+        />
       </CardContent>
     </Card>
   );
