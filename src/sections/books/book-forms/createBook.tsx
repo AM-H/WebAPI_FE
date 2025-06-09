@@ -59,17 +59,17 @@ export default function CreateBook({ onSuccess, onError }: { onSuccess: () => vo
             original_publication_year: Number(values.original_publication_year),
             original_title: values.original_title,
             title: values.title,
-            ratings_1: Number(values.ratings_1),
-            ratings_2: Number(values.ratings_2),
-            ratings_3: Number(values.ratings_3),
-            ratings_4: Number(values.ratings_4),
-            ratings_5: Number(values.ratings_5),
+            ratings_1: Number(values.ratings_1) || 0,
+            ratings_2: Number(values.ratings_2) || 0,
+            ratings_3: Number(values.ratings_3) || 0,
+            ratings_4: Number(values.ratings_4) || 0,
+            ratings_5: Number(values.ratings_5) || 0,
             image_url: values.image_url,
             small_image_url: values.small_image_url
           };
 
           axios
-            .post('c/books', bookData)
+            .post('c/book', bookData)
             .then((response) => {
               setSubmitting(false);
               resetForm({
